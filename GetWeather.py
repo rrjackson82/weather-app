@@ -1,7 +1,6 @@
 from math import floor
 import requests
 import geocoder
-import pyttsx3
 
 # config is a file that holds my api key. it is hidden in the git ignore file
 import config
@@ -18,8 +17,6 @@ if response.status_code == 200:
     data = response.json()
     weather = data['weather'][0]['description']
     temperature = round(1.8*(data["main"]["temp"]-273) + 32, 2)
-    engine = pyttsx3.init()
-    engine.setProperty('rate', 185)
 
     tempStr = str(floor(temperature))
 
@@ -32,7 +29,6 @@ if response.status_code == 200:
     if clre == "y" or clre == "yes":
         if int(temperature) >= 90:
             print("You should probably wear short sleeves and shorts")
-            # engine.runAndWait()
         if 90 > int(temperature) > 50:
             print("You should probably wear short sleeves and long pants.")
         if 50 >= int(temperature) > 37:
